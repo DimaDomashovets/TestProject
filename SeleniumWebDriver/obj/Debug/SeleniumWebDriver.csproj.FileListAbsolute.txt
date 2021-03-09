@@ -28,3 +28,4 @@ C:\Users\Dell\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.C
 C:\Users\Dell\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.CopyComplete
 C:\Users\Dell\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.dll
 C:\Users\Dell\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.pdb
+C:\Users\Dell\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csprojAssemblyReference.cache

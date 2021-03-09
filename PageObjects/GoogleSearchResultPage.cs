@@ -38,7 +38,7 @@ namespace PageObjects
             var result = elements[linkRow].Text.Contains(expectedPhrase);
             if (!result)
             {
-                throw new Exception($"Link with serial number = {linkRow} doesn`t contain specific phrase");
+                throw new Exception($"Link with serial number = {linkRow} doesn`t contain specific phrase - {expectedPhrase}");
             }
             return this;
         }

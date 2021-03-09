@@ -29,16 +29,10 @@ namespace SeleniumWebDriver.Utils
             return new WebDriverWait(driver, time);
         }
 
-        public void PressEnterOnElement(By selector)
-        {
-            driver.FindElement(selector).SendKeys(Keys.Enter);
-        }
-
         public void CloseApplication()
         {
             driver?.Quit();
         }
-
 
     }
 }

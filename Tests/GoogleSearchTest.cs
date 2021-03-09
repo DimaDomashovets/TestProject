@@ -7,7 +7,7 @@ namespace Tests
     public class GoogleSearchTest: ATest
     {
         private string SearchText = "Selenium IDE export to C#";
-        private string ExpectedString = "Selenium IDE";
+        private string ExpectedText = "Selenium IDE";
 
         [SetUp]
         public void SetUp()
@@ -20,7 +20,7 @@ namespace Tests
         {
             Pages.GoogleMainPage.PerformSearch(SearchText).
                 VerifySearchResultInputField(SearchText).
-                VerifySearchResultLink(ExpectedString, 3);
+                VerifySearchResultLink(ExpectedText, 3);
         }
 
 
