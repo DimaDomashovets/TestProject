@@ -40,7 +40,7 @@ namespace SeleniumWebDriver.Utils
                 default:
                     throw new Exception("Unknown browser is defined in run settings");
             }
-            return driver;
+            return Driver;
 
         }
 
