@@ -41,6 +41,6 @@ namespace PageObjects
 
     public static class GoogleMainPageSelectors
     {
-        public static string InputField => "//input[@title='Search']";
+        public static string InputField => "//input[@name='q']";
     }
 }
