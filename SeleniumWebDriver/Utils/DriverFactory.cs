@@ -13,29 +13,17 @@ namespace SeleniumWebDriver.Utils
     {
         private static IWebDriver driver { get; set; }
 
-        public static IWebDriver Driver
-        {
-            get
-            {
-                return driver;
-            }
-            private set
-            {
-                driver = value;
-            }
-        }
-
         public static IWebDriver GetDriver()
         {
             switch (TestContext.Parameters["webDriver"])
             {
                 case "Chrome":
-                    if(Driver == null)
-                        Driver = new ChromeDriver();
+                    if (driver == null)
+                        driver = new ChromeDriver();
                     break;
                 case "FireFox":
-                    if(Driver == null)
-                        Driver = new FirefoxDriver();
+                    if (driver == null)
+                        driver = new FirefoxDriver();
                     break;
                 default:
                     throw new Exception("Unknown browser is defined in run settings");
@@ -43,8 +31,6 @@ namespace SeleniumWebDriver.Utils
             return driver;
 
         }
-
-
 
     }
 }
