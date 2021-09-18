@@ -1,28 +1,17 @@
-﻿using OpenQA.Selenium.Interactions;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SeleniumWebDriver.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PageObjects
 {
     public abstract class ABase
     {
-        protected Driver driver;
-        protected Waiters waiters;
-        protected Pages pages;
+        protected IWebDriver driver;
 
-        public static TimeSpan TimeForExplicitWait => TimeSpan.FromSeconds(20);
-
-        public ABase(Pages page)
+        public ABase(IWebDriver driver)
         {
-            pages = page;
-            waiters = page.waiters;
-            driver = page.driver; 
+            this.driver = driver;
         }
-
-
     }
 }

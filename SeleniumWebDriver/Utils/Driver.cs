@@ -1,38 +1,48 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace SeleniumWebDriver.Utils
 {
-    public class Driver
+    public static class Driver
     {
-        public IWebDriver driver;
+        [ThreadStatic]
+        private static IWebDriver _driver;
+        private static Waiters wait;
 
-        public Driver()
+        static Driver()
         {
-            driver = DriverFactory.GetDriver();
+            _driver = BrowserFactory.InitBrowser();
+            wait = new Waiters(_Driver, TimeForExplicitWait);
         }
 
-        public void GoToUrl()
+        public static TimeSpan TimeForExplicitWait => TimeSpan.FromSeconds(Convert.ToDouble(TestContext.Parameters["explicitWaitTimeout"]));
+        public static IWebDriver _Driver => _driver ?? throw new NullReferenceException("Driver is null!");
+
+        public static void GoToUrl()
         {
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(TestContext.Parameters["url"].ToString());
+            _Driver.Manage().Window.Maximize();
+            _Driver.Navigate().GoToUrl(TestContext.Parameters["url"].ToString());
         }
 
-        public WebDriverWait InitializeExplicitWait(TimeSpan time)
-        {
-            return new WebDriverWait(driver, time);
-        }
+        public static IWebElement FindElement(By by)
+            => wait.Wait.Until(drv => drv.FindElement(by));
 
-        public void CloseApplication()
-        {
-            driver?.Quit();
-        }
+        public static ReadOnlyCollection<IWebElement> FindElements(By by)
+            => wait.Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(by));
+            
+        public static IWebElement WaitForElementToBeClickable(By by)
+            => wait.Wait.Until(ExpectedConditions.ElementToBeClickable(by));
 
+        public static void TakeScreenshot(string imageName)
+        {
+            var ss = ((ITakesScreenshot)_Driver).GetScreenshot();
+            var ssFileName = Path.Combine(LoggerConfiguration.CurrentTestDirectory.FullName, imageName);
+            ss.SaveAsFile($"{ssFileName}.png", ScreenshotImageFormat.Png);
+        }
     }
 }

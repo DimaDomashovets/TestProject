@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using PageObjects;
 using SeleniumWebDriver.Utils;
 using System;
@@ -6,21 +7,47 @@ using System;
 
 namespace Tests
 {
-    public class ATest
+    public abstract class ATest
     {
-        Driver driver = new Driver();
-        Waiters waiters;
         Pages pages;
 
-        Waiters Waiters => (waiters = new Waiters(driver, TimeSpan.FromSeconds(20)));
+        protected Pages Pages => pages ?? new Pages();
 
-        public Pages Pages => pages ?? new Pages(driver, Waiters);
-
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        [SetUp]
+        protected void SetUp()
         {
-            driver?.CloseApplication();
+            LoggerConfiguration.SetLogger();
+            Driver.GoToUrl();
+        }
+
+        [OneTimeSetUp]
+        public virtual void BeforeAll()
+        {
+            LoggerConfiguration.CreateTestResultsDirectory();
+        }
+
+        [TearDown]
+        protected void OneTimeTearDown()
+        {
+            if (Driver._Driver != null)
+            {
+                var outcome = TestContext.CurrentContext.Result.Outcome.Status;;
+
+                if (outcome == TestStatus.Passed)
+                {
+                    LoggerConfiguration.Log.Info("Outcome: Passed");
+                }
+                else if (outcome == TestStatus.Failed)
+                {
+                    Driver.TakeScreenshot("test_failed");
+                    LoggerConfiguration.Log.Info($"Outcome: Failed");
+                    LoggerConfiguration.Log.Info($"Message: {TestContext.CurrentContext.Result.Message}");
+                    LoggerConfiguration.Log.Info($"StackTrace: {TestContext.CurrentContext.Result.StackTrace}");
+                }
+
+                Driver._Driver.Close();
+                Driver._Driver.Quit();
+            }
         }
 
     }
