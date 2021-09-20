@@ -8,13 +8,13 @@ namespace PageObjects.PageOperations
     {
         #region Locators
         private string textFieldXpath(string name) => $"//input[@id='{name}']";
-        private string buttonXpath(string name) => $"//button[contains(text(), '{name}')]";
+        private string buttonXpath => $"//button[@class='btn btn-primary btn-lg']";
         #endregion
 
         #region Elements
         public TextField LoginField => ElementFactory.Create<TextField>(By.XPath(textFieldXpath("email")));
         public TextField PasswordField => ElementFactory.Create<TextField>(By.XPath(textFieldXpath("password")));
-        public Button LoginButton => ElementFactory.Create<Button>(By.XPath(buttonXpath("Log In")));
+        public Button LoginButton => ElementFactory.Create<Button>(By.XPath(buttonXpath));
         #endregion
 
         public void TypeTextIntoLogInField(string text, bool shouldClear = false)

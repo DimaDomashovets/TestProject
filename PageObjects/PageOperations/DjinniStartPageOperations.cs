@@ -8,7 +8,7 @@ namespace PageObjects
     public class DjinniStartPageOperations: ABase
     {
         #region Locators
-        private string logInBtn = "//a[contains(text(), 'Log In')]";
+        private string logInBtn = "//a[@class='jobs-push-login-link rounded-link']";
         #endregion
 
         #region Elements
