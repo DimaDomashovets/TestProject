@@ -65,7 +65,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="RunSettings.runsettings">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
