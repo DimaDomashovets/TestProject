@@ -7,7 +7,7 @@ using System;
 
 namespace Tests
 {
-    public abstract class ATest
+    public class BaseTest
     {
         Pages pages;
 

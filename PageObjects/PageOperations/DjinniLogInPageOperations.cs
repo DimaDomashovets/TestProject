@@ -1,40 +1,46 @@
 ﻿using OpenQA.Selenium;
-using PageObjects.PageDeclarations;
+using PageObjects.PageComponents;
+using SeleniumWebDriver.Utils;
 
 namespace PageObjects.PageOperations
 {
     public class DjinniLogInPageOperations : ABase
     {
-        private readonly DjinniLogInPageDeclarations PageDeclarations;
+        #region Locators
+        private string textFieldXpath(string name) => $"//input[@id='{name}']";
+        private string buttonXpath(string name) => $"//button[contains(text(), '{name}')]";
+        #endregion
 
-        public DjinniLogInPageOperations(IWebDriver driver) : base(driver)
-        {
-            PageDeclarations = new DjinniLogInPageDeclarations(driver);
-        }
+        #region Elements
+        public TextField LoginField => ElementFactory.Create<TextField>(By.XPath(textFieldXpath("email")));
+        public TextField PasswordField => ElementFactory.Create<TextField>(By.XPath(textFieldXpath("password")));
+        public Button LoginButton => ElementFactory.Create<Button>(By.XPath(buttonXpath("Log In")));
+        #endregion
 
         public void TypeTextIntoLogInField(string text, bool shouldClear = false)
         {
             if (shouldClear)
-                PageDeclarations.LogInTxtField.Clear();
-            PageDeclarations.LogInTxtField.SendKeys(text);
+                LoginField.Clear();
+            LoginField.SendKeys(text);
         }
 
         public void TypeTextIntoPasswordField(string text, bool shouldClear = false)
         {
             if (shouldClear)
-                PageDeclarations.PasswordTxtField.Clear();
-            PageDeclarations.PasswordTxtField.SendKeys(text);
+                PasswordField.Clear();
+            PasswordField.SendKeys(text);
         }
 
         public void PressLogInBtn()
-            => PageDeclarations.LogInButton.Click();
+            => LoginButton.Click();
 
         public DjinniMainPageOperations LogInIntoSystem(string login, string password, bool shouldClear = false)
         {
             TypeTextIntoLogInField(login, shouldClear);
             TypeTextIntoPasswordField(password, shouldClear);
             PressLogInBtn();
-            return new DjinniMainPageOperations(driver);
+            LoggerConfiguration.Log.Info($"User logged in and Main page should be opened");
+            return new DjinniMainPageOperations();
         }
     }
 }

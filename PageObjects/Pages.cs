@@ -10,11 +10,7 @@ namespace PageObjects
 {
     public class Pages
     {
-        private DjinniStartPageOperations _djinniStartPage;
-        private DjinniLogInPageOperations _djinniLogInPage;
-
-        public DjinniStartPageOperations DjinniStartPageOperations => _djinniStartPage ?? new DjinniStartPageOperations(Driver._Driver);
-        public DjinniLogInPageOperations DjinniLogInOperations => _djinniLogInPage ?? new DjinniLogInPageOperations(Driver._Driver);
-
+        public DjinniStartPageOperations DjinniStartPageOperations => PageFactory.Create<DjinniStartPageOperations>();
+        public DjinniLogInPageOperations DjinniLogInPageOperations => PageFactory.Create<DjinniLogInPageOperations>();
     }
 }

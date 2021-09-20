@@ -56,13 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ABase.cs" />
+    <Compile Include="BaseElement.cs" />
+    <Compile Include="Factories\ElementFactory.cs" />
     <Compile Include="PageComponents\Button.cs" />
     <Compile Include="PageComponents\NavigationBar.cs" />
     <Compile Include="PageComponents\TextField.cs" />
-    <Compile Include="PageDeclarations\BasePageDeclarations.cs" />
-    <Compile Include="PageDeclarations\DjinniLogInPageDeclarations.cs" />
-    <Compile Include="PageDeclarations\DjinniMainPageDeclarations.cs" />
-    <Compile Include="PageDeclarations\DjinniStartPageDeclarations.cs" />
+    <Compile Include="Factories\PageFactory.cs" />
     <Compile Include="PageOperations\DjinniLogInPageOperations.cs" />
     <Compile Include="PageOperations\DjinniMainPageOperations.cs" />
     <Compile Include="PageOperations\DjinniStartPageOperations.cs" />
@@ -78,6 +77,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

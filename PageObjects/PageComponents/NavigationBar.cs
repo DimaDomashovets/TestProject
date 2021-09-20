@@ -3,22 +3,26 @@ using SeleniumWebDriver.Utils;
 
 namespace PageObjects.PageComponents
 {
-    public class NavigationBar
+    public class NavigationBar : BaseElement
     {
-        private IWebElement navigationBar;
-
-        public NavigationBar()
-        {
-            navigationBar = Driver.FindElement(By.XPath(navigationBarXPath));
-        }
-
-        #region XPathes
-        private string navigationBarXPath => "//nav[@class='navbar navbar-default']/div";
-        private string userEmail => $"{navigationBarXPath}//ul[@class='nav navbar-nav navbar-profile']//div[@class='user-email']";
-        #endregion
-
         public string GetUserEmail()
-           => navigationBar.FindElement(By.XPath(userEmail)).Text;
+           => WebElement.Text;
+            
+
+        //private IWebElement navigationBar;
+
+        //public NavigationBar()
+        //{
+        //    navigationBar = Driver.FindElement(By.XPath(navigationBarXPath));
+        //}
+
+        //#region XPathes
+        //private string navigationBarXPath => "//nav[@class='navbar navbar-default']/div";
+        //private string userEmail => $"{navigationBarXPath}//ul[@class='nav navbar-nav navbar-profile']//div[@class='user-email']";
+        //#endregion
+
+        //public string GetUserEmail()
+        //   => navigationBar.FindElement(By.XPath(userEmail)).Text;
 
     }
 }

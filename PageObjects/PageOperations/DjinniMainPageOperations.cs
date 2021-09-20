@@ -1,19 +1,27 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using PageObjects.PageDeclarations;
+using PageObjects.PageComponents;
+using SeleniumWebDriver.Utils;
 
 namespace PageObjects.PageOperations
 {
     public class DjinniMainPageOperations : ABase
     {
-        private readonly DjinniMainPageDeclarations PageDeclarations;
 
-        public DjinniMainPageOperations(IWebDriver driver) : base(driver)
-        {
-            PageDeclarations = new DjinniMainPageDeclarations(driver);
-        }
+        #region Locators
+        private string navigationBarXPath => "//nav[@class='navbar navbar-default']/div";
+        private string userEmail => $"{navigationBarXPath}//ul[@class='nav navbar-nav navbar-profile']//div[@class='user-email']";
+        #endregion
+
+        #region Elements
+        public NavigationBar UserEmail => ElementFactory.Create<NavigationBar>(By.XPath(userEmail));
+        
+        #endregion
 
         public void VerifyUserEmailHeader(string email)
-           => Assert.AreEqual(email, PageDeclarations.GetUserEmail());
+        {
+            Assert.AreEqual(email, UserEmail.GetUserEmail());
+            LoggerConfiguration.Log.Info($"Expected email name - {email} meets actual - {UserEmail.GetUserEmail()}");
+        }
     }
 }

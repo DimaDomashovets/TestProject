@@ -1,27 +1,25 @@
 ﻿using OpenQA.Selenium;
-using PageObjects.PageDeclarations;
+using PageObjects.PageComponents;
 using PageObjects.PageOperations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SeleniumWebDriver.Utils;
 
 namespace PageObjects
 {
     public class DjinniStartPageOperations: ABase
     {
-        private readonly DjinniStartPageDeclarations PageDeclarations;
-             
-        public DjinniStartPageOperations(IWebDriver driver) : base(driver)
-        {
-            PageDeclarations = new DjinniStartPageDeclarations(driver);
-        }
+        #region Locators
+        private string logInBtn = "//a[contains(text(), 'Log In')]";
+        #endregion
+
+        #region Elements
+        public Button LoginButton => ElementFactory.Create<Button>(By.XPath(logInBtn));
+        #endregion
 
         public DjinniLogInPageOperations ClickLoginButton()
         {
-            PageDeclarations.LogInBtn.Click();
-            return new DjinniLogInPageOperations(driver);
+            LoginButton.Click();
+            LoggerConfiguration.Log.Info($"Log In button clicked!");
+            return new DjinniLogInPageOperations();
         }
 
     }

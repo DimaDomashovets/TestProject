@@ -12,31 +12,24 @@ namespace SeleniumWebDriver.Utils
     {
         [ThreadStatic]
         private static IWebDriver _driver;
-        private static Waiters wait;
+        private static Waiters _wait;
 
         static Driver()
         {
             _driver = BrowserFactory.InitBrowser();
-            wait = new Waiters(_Driver, TimeForExplicitWait);
+            _wait = new Waiters(_Driver, TimeForExplicitWait);
         }
 
         public static TimeSpan TimeForExplicitWait => TimeSpan.FromSeconds(Convert.ToDouble(TestContext.Parameters["explicitWaitTimeout"]));
         public static IWebDriver _Driver => _driver ?? throw new NullReferenceException("Driver is null!");
+        public static Waiters _Wait => _wait ?? throw new NullReferenceException("Driver is null!");
 
         public static void GoToUrl()
         {
             _Driver.Manage().Window.Maximize();
             _Driver.Navigate().GoToUrl(TestContext.Parameters["url"].ToString());
+            LoggerConfiguration.Log.Info($"Url: {TestContext.Parameters["url"]} opened");
         }
-
-        public static IWebElement FindElement(By by)
-            => wait.Wait.Until(drv => drv.FindElement(by));
-
-        public static ReadOnlyCollection<IWebElement> FindElements(By by)
-            => wait.Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(by));
-            
-        public static IWebElement WaitForElementToBeClickable(By by)
-            => wait.Wait.Until(ExpectedConditions.ElementToBeClickable(by));
 
         public static void TakeScreenshot(string imageName)
         {

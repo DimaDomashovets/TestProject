@@ -13,7 +13,7 @@ namespace SeleniumWebDriver.Utils
     {
         public static IWebDriver InitBrowser()
         {
-            LoggerConfiguration.Log.Info($"Brower: {TestContext.Parameters["webDriver"]}");
+            LoggerConfiguration.Log.Info($"Browser: {TestContext.Parameters["webDriver"]}");
             switch (TestContext.Parameters["webDriver"])
             {
                 case "chrome":

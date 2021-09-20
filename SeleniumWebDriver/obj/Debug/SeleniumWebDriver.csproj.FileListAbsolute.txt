@@ -43,8 +43,8 @@ C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\bin\Debug\S
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\bin\Debug\WebDriver.dll
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\bin\Debug\nunit.framework.xml
-C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.AssemblyReference.cache
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.CoreCompileInputs.cache
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.CopyComplete
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.dll
 C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.pdb
+C:\Users\ssi_ddomashovets\source\repos\TestProject\SeleniumWebDriver\obj\Debug\SeleniumWebDriver.csproj.AssemblyReference.cache

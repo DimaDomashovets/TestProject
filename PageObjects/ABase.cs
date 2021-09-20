@@ -7,11 +7,6 @@ namespace PageObjects
 {
     public abstract class ABase
     {
-        protected IWebDriver driver;
-
-        public ABase(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
+        protected internal ElementFactory ElementFactory { get; set; }
     }
 }

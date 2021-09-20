@@ -4,7 +4,7 @@ using Tests.TestData;
 namespace Tests
 {
     [TestFixture]
-    public class LogInTest : ATest
+    public class LogInTest : BaseTest
     {
         private static readonly object[] ValidUser =
         {
